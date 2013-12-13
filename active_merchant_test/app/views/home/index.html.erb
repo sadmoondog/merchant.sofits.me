@@ -1,0 +1,16 @@
+<%= payment_service_for 1, 'nk@sofits.me',
+                        :amount =>  10,
+                        :currency => 'TST',
+                        :service => :intellectmoney do |s| %>
+    <% s.order_id 4 %>
+    <% s.shop_id  452097%>
+    <% s.username 'test' %>
+    <% s.user_email 'useremail@test.com' %>
+    <% s.description 'test payment' %>
+    <% s.fail_url  'http://195.238.188.166:3000/intellectmoney/success'%>
+    <% s.success_url  'http://195.238.188.166:3000/intellectmoney/fail'%>
+    <% s.back_url  'http://195.238.188.166:3000/home/index'%>
+    <%= submit_tag "Buy for 10 TST" %>
+<% end %>
+
+<%= "#{params}" %>
