@@ -6,11 +6,15 @@ module ActiveMerchant #:nodoc:
           include Common
 
           def initialize(order, account, options = {})
+            @intellectmoney_options = options.dup
             super
+            @intellectmoney_options.each do |key, value|
+              add_field mappings[key], value
+            end
           end
 
           def form_fields
-            @fields.merge(ActiveMerchant::Billing::Integrations::Intellectmoney.signature_parameter_name => generate_signature)
+            @fields
           end
 
           def params
@@ -27,6 +31,7 @@ module ActiveMerchant #:nodoc:
           mapping :fail_url, 'failUrl'
           mapping :success_url, 'successUrl'
           mapping :back_url, 'backUrl'
+          mapping :hash_key, 'hash'
         end
       end
     end

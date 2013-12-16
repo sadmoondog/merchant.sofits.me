@@ -6,7 +6,6 @@ module ActiveMerchant #:nodoc:
       module Intellectmoney
         autoload :Helper, File.dirname(__FILE__) + '/intellectmoney/helper.rb'
         autoload :Notification, File.dirname(__FILE__) + '/intellectmoney/notification.rb'
-        autoload :Return, File.dirname(__FILE__) + '/intellectmoney/return.rb'
         autoload :Common, File.dirname(__FILE__) + '/intellectmoney/common.rb'
 
         mattr_accessor :test_url

@@ -1,16 +1,29 @@
-<%= payment_service_for 1, 'nk@sofits.me',
+<%= payment_service_for 1, ActiveMerchantTest::Application.config.intellectmoney_login,
+                        :html => {:id => 'payment'},
                         :amount =>  10,
                         :currency => 'TST',
                         :service => :intellectmoney do |s| %>
-    <% s.order_id 4 %>
+    <% s.order_id @last_order_id %>
     <% s.shop_id  452097%>
     <% s.username 'test' %>
     <% s.user_email 'useremail@test.com' %>
-    <% s.description 'test payment' %>
-    <% s.fail_url  'http://195.238.188.166:3000/intellectmoney/success'%>
-    <% s.success_url  'http://195.238.188.166:3000/intellectmoney/fail'%>
-    <% s.back_url  'http://195.238.188.166:3000/home/index'%>
+    <% s.description 'test' %>
+    <% s.fail_url  'http://37.203.11.37:3001/intellectmoney/fail'%>
+    <% s.success_url  'http://37.203.11.37:3001/intellectmoney/success'%>
+    <% s.back_url  'http://37.203.11.37:3001/home/index'%>
     <%= submit_tag "Buy for 10 TST" %>
 <% end %>
+<script>
+  $(document).ready(function(){
+     $('#payment').submit(function(e){
+         $.ajax({
+             type: "POST",
+             url: "/intellectmoney/pay",
+             async: false,
+             data: $("#payment").serialize()
+         })
+     });
+  });
+</script>
 
 <%= "#{params}" %>

@@ -3,6 +3,7 @@ ActiveMerchantTest::Application.routes.draw do
 
 
   scope 'intellectmoney' do
+    match 'pay'  => 'home#pay', :as => :intellectmoney_pay
     match 'result'  => 'home#result', :as => :intellectmoney_result
     match 'success' => 'home#success', :as => :intellectmoney_success
     match 'fail'    => 'home#fail',    :as => :intellectmoney_fail
